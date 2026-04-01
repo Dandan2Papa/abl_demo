@@ -12,6 +12,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("rider");
   const [showSettings, setShowSettings] = useState(false);
   const [settings, setSettings] = useState({
+    demoMode: true,
     apiUrl: "https://api.anthropic.com/v1/messages",
     apiKey: "",
     model: "claude-sonnet-4-20250514",

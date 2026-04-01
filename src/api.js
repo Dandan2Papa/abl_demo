@@ -1,4 +1,11 @@
+import { callLocalLLM } from "./localLLM.js";
+
 export async function callLLM({ messages, system, settings }) {
+  // Demo mode: use local mock LLM (no network required)
+  if (settings.demoMode) {
+    return callLocalLLM({ messages, system });
+  }
+
   const headers = {
     "Content-Type": "application/json",
     "anthropic-version": "2023-06-01",
