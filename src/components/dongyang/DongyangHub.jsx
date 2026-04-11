@@ -72,7 +72,11 @@ const DongyangHub = ({ settings, onBack }) => {
     setIsLoading(true);
 
     try {
-      const response = await callLLM(userInput, { model: selectedModel, settings });
+      const response = await callLLM({
+        messages: [...chatMessages, { role: "user", content: userInput }],
+        system: "동양생명 AI 어시스턴트입니다. 보험 약관, 청구, 언더라이팅, 고객 대응에 전문적으로 답변합니다.",
+        settings: { ...settings, model: selectedModel },
+      });
       const assistantMessage = { role: "assistant", content: response };
       setChatMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
