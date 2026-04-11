@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { C } from "./constants.js";
-import { Header } from "./components/Header.jsx";
-import { TabNav } from "./components/TabNav.jsx";
-import { SettingsModal } from "./components/SettingsModal.jsx";
-import { RiderDemo } from "./components/RiderDemo.jsx";
-import { ChatbotDemo } from "./components/ChatbotDemo.jsx";
-import { SalesScriptDemo } from "./components/SalesScriptDemo.jsx";
-import { PlatformDemo } from "./components/PlatformDemo.jsx";
+import PortalHome from "./components/portal/PortalHome.jsx";
+import ABLHub from "./components/abl/ABLHub.jsx";
+import DongyangHub from "./components/dongyang/DongyangHub.jsx";
+import AdminDashboard from "./components/admin/AdminDashboard.jsx";
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState("rider");
+  const [page, setPage] = useState("portal");
   const [showSettings, setShowSettings] = useState(false);
   const [settings, setSettings] = useState({
     apiUrl: "https://api.anthropic.com/v1/messages",
@@ -19,20 +16,10 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: "'Pretendard','Apple SD Gothic Neo','Noto Sans KR',-apple-system,sans-serif", background: C.bg, minHeight: "100vh" }}>
-      <Header onSettings={() => setShowSettings(true)} />
-      <TabNav active={activeTab} setActive={setActiveTab} />
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "16px 20px" }}>
-        {activeTab === "rider"    && <RiderDemo      settings={settings} />}
-        {activeTab === "chatbot"  && <ChatbotDemo    settings={settings} />}
-        {activeTab === "script"   && <SalesScriptDemo settings={settings} />}
-        {activeTab === "platform" && <PlatformDemo   settings={settings} />}
-      </div>
-      <div style={{ borderTop: `1px solid ${C.border}`, padding: "10px 24px", textAlign: "center", fontSize: 11, color: C.muted }}>
-        AI Powered by 42Maru &nbsp;·&nbsp; 우리금융그룹 AI 영업지원 플랫폼 Demo v2.0
-      </div>
-      {showSettings && (
-        <SettingsModal settings={settings} setSettings={setSettings} onClose={() => setShowSettings(false)} />
-      )}
+      {page === "portal" && <PortalHome onNavigate={setPage} />}
+      {page === "abl" && <ABLHub settings={settings} onBack={() => setPage("portal")} />}
+      {page === "dongyang" && <DongyangHub settings={settings} onBack={() => setPage("portal")} />}
+      {page === "admin" && <AdminDashboard onBack={() => setPage("portal")} />}
     </div>
   );
 }

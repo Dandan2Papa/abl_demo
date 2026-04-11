@@ -10,7 +10,7 @@ export async function callLLM({ messages, system, settings }) {
     headers,
     body: JSON.stringify({
       model: settings.model || "claude-sonnet-4-20250514",
-      max_tokens: 800,
+      max_tokens: 1200,
       system,
       messages,
     }),
