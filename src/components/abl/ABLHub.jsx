@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { C } from "../../constants.js";
-import { callLLM } from "../../api.js";
+import { callLLM, getDemoSource } from "../../api.js";
 
 const ABLHub = ({ settings, onBack }) => {
   const [activeTab, setActiveTab] = useState("knowledge");
@@ -67,27 +67,19 @@ const ABLHub = ({ settings, onBack }) => {
       setLoading(true);
 
       try {
+        const userMessages = [{ role: "user", content: input }];
         const response = await callLLM({
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are an ABL생명 insurance product knowledge agent. Answer questions about insurance policies, documents, and coverage terms. When providing answers, include relevant document sources.",
-            },
-            { role: "user", content: input },
-          ],
+          messages: userMessages,
+          system: "ABL생명 보험상품 전문 AI입니다. 약관, 기초서류, 사업방법서 기반으로 정확하게 답변합니다.",
           settings,
         });
+        const demoSrc = getDemoSource(userMessages);
 
         const assistantMsg = {
           id: messages.length + 2,
           type: "assistant",
           text: response,
-          sources: {
-            document: "약관집_2025_v3.2",
-            page: "42-45",
-            excerpt: "해당 보장사항에 대한 구체적 내용...",
-          },
+          sources: demoSrc || { document: "약관집_2025_v3.2", page: "42-45", excerpt: "관련 보장사항 내용" },
         };
         setMessages((prev) => [...prev, assistantMsg]);
       } catch (error) {
@@ -111,7 +103,7 @@ const ABLHub = ({ settings, onBack }) => {
             borderRight: "1px solid #DEE2E8",
             overflowY: "auto",
             padding: "16px",
-            backgroundColor: "#F3F5F8",
+            backgroundColor: "#FAFBFC",
           }}
         >
           <div style={{ marginBottom: "24px" }}>
@@ -255,7 +247,7 @@ const ABLHub = ({ settings, onBack }) => {
                   style={{
                     maxWidth: "60%",
                     padding: "12px 16px",
-                    backgroundColor: msg.type === "user" ? "#C8001C" : "#fff",
+                    backgroundColor: msg.type === "user" ? "#C8001C" : "#FFFFFF",
                     color: msg.type === "user" ? "#fff" : "#000",
                     borderRadius: "8px",
                     border: msg.type === "assistant" ? "1px solid #DEE2E8" : "none",
@@ -381,7 +373,7 @@ const ABLHub = ({ settings, onBack }) => {
             borderLeft: "1px solid #DEE2E8",
             overflowY: "auto",
             padding: "16px",
-            backgroundColor: "#F3F5F8",
+            backgroundColor: "#FAFBFC",
           }}
         >
           <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "12px" }}>
@@ -471,17 +463,8 @@ const ABLHub = ({ settings, onBack }) => {
       setLoading(true);
       try {
         const response = await callLLM({
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are an ABL생명 sales script generator. Create persuasive sales scripts based on customer information and coverage analysis.",
-            },
-            {
-              role: "user",
-              content: `고객정보: ${JSON.stringify(formData)}. 영업 스크립트를 생성해주세요.`,
-            },
-          ],
+          messages: [{ role: "user", content: `고객정보: ${JSON.stringify(formData)}. 영업 스크립트를 생성해주세요.` }],
+          system: "ABL생명 영업 전문 AI입니다. 고객 정보를 분석하여 맞춤형 영업 스크립트를 생성합니다.",
           settings,
         });
 
@@ -508,7 +491,7 @@ const ABLHub = ({ settings, onBack }) => {
             borderRight: "1px solid #DEE2E8",
             padding: "20px",
             overflowY: "auto",
-            backgroundColor: "#F3F5F8",
+            backgroundColor: "#FAFBFC",
           }}
         >
           <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "16px" }}>
@@ -656,7 +639,7 @@ const ABLHub = ({ settings, onBack }) => {
             width: "240px",
             borderLeft: "1px solid #DEE2E8",
             padding: "20px",
-            backgroundColor: "#F3F5F8",
+            backgroundColor: "#FAFBFC",
             overflowY: "auto",
           }}
         >
@@ -787,13 +770,8 @@ const ABLHub = ({ settings, onBack }) => {
           mode === "code" && selectedLanguage ? `Language: ${selectedLanguage}` : "";
 
         const response = await callLLM({
-          messages: [
-            {
-              role: "system",
-              content: `${systemPrompt} ${contextInfo} ${contextInfo2}`,
-            },
-            { role: "user", content: input },
-          ],
+          messages: [{ role: "user", content: input }],
+          system: `${systemPrompt} ${contextInfo} ${contextInfo2}`.trim(),
           settings,
         });
 
@@ -851,7 +829,7 @@ const ABLHub = ({ settings, onBack }) => {
           <div
             style={{
               padding: "12px 16px",
-              backgroundColor: "#F3F5F8",
+              backgroundColor: "#FAFBFC",
               borderBottom: "1px solid #DEE2E8",
               display: "flex",
               gap: "12px",
@@ -922,7 +900,7 @@ const ABLHub = ({ settings, onBack }) => {
                 style={{
                   maxWidth: "60%",
                   padding: "12px 16px",
-                  backgroundColor: msg.type === "user" ? "#C8001C" : "#f5f5f5",
+                  backgroundColor: msg.type === "user" ? "#FEF2F3" : "#F8FAFC",
                   color: msg.type === "user" ? "#fff" : "#000",
                   borderRadius: "8px",
                   fontSize: "13px",
@@ -1020,17 +998,8 @@ const ABLHub = ({ settings, onBack }) => {
       setLoading(true);
       try {
         const response = await callLLM({
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are an ABL생명 rider recommendation specialist. Recommend suitable insurance riders based on customer health profile.",
-            },
-            {
-              role: "user",
-              content: `질병 이력: ${profile.diseaseHistory.join(", ")}. 특약을 추천해주세요.`,
-            },
-          ],
+          messages: [{ role: "user", content: `질병 이력: ${profile.diseaseHistory.join(", ")}. 특약을 추천해주세요.` }],
+          system: "ABL생명 특약 추천 전문 AI입니다. 고객 건강상태에 최적화된 특약을 추천합니다.",
           settings,
         });
 
@@ -1065,7 +1034,7 @@ const ABLHub = ({ settings, onBack }) => {
             width: "300px",
             borderRight: "1px solid #DEE2E8",
             padding: "20px",
-            backgroundColor: "#F3F5F8",
+            backgroundColor: "#FAFBFC",
             overflowY: "auto",
           }}
         >
@@ -1198,7 +1167,7 @@ const ABLHub = ({ settings, onBack }) => {
                     style={{
                       display: "grid",
                       gridTemplateColumns: "1fr 1fr 2fr",
-                      backgroundColor: "#F3F5F8",
+                      backgroundColor: "#FAFBFC",
                       fontSize: "11px",
                       fontWeight: 600,
                       padding: "12px",
@@ -1357,10 +1326,8 @@ const ABLHub = ({ settings, onBack }) => {
       try {
         const agent = agents.find((a) => a.id === selectedAgent);
         const response = await callLLM({
-          messages: [
-            { role: "system", content: agent.systemPrompt },
-            { role: "user", content: agentInput },
-          ],
+          messages: [{ role: "user", content: agentInput }],
+          system: agent.systemPrompt,
           settings,
         });
 
@@ -1448,7 +1415,7 @@ const ABLHub = ({ settings, onBack }) => {
                   style={{
                     maxWidth: "60%",
                     padding: "12px 16px",
-                    backgroundColor: msg.type === "user" ? "#C8001C" : "#f5f5f5",
+                    backgroundColor: msg.type === "user" ? "#FEF2F3" : "#F8FAFC",
                     color: msg.type === "user" ? "#fff" : "#000",
                     borderRadius: "8px",
                     fontSize: "13px",
@@ -1528,7 +1495,7 @@ const ABLHub = ({ settings, onBack }) => {
           padding: "24px",
           overflowY: "auto",
           height: "calc(100vh - 200px)",
-          backgroundColor: "#F3F5F8",
+          backgroundColor: "#FAFBFC",
         }}
       >
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
@@ -1577,7 +1544,7 @@ const ABLHub = ({ settings, onBack }) => {
   ];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh", backgroundColor: "#F3F5F8" }}>
+    <div style={{ display: "flex", flexDirection: "column", height: "100vh", backgroundColor: "#FFFFFF" }}>
       {/* Header */}
       <div
         style={{

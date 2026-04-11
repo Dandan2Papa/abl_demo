@@ -169,7 +169,7 @@ const PortalHome = ({ onNavigate }) => {
             padding: "40px",
             boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
             cursor: "pointer",
-            border: `3px solid ${C.ablRed}`,
+            border: `3px solid ${C.abl}`,
             transition: "all 0.3s ease-out",
             transform: "translateY(0)",
           }}
@@ -183,7 +183,7 @@ const PortalHome = ({ onNavigate }) => {
           }}
         >
           <div style={{ marginBottom: "24px" }}>
-            <h3 style={{ fontSize: "32px", fontWeight: 700, color: C.ablRed, margin: "0 0 8px 0" }}>
+            <h3 style={{ fontSize: "32px", fontWeight: 700, color: C.abl, margin: "0 0 8px 0" }}>
               ABL
             </h3>
             <p style={{ fontSize: "14px", color: "#8A95A3", margin: 0, fontWeight: 500 }}>
@@ -194,7 +194,7 @@ const PortalHome = ({ onNavigate }) => {
           <div style={{ marginBottom: "24px" }}>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
               {["보험상품 지식 Agent", "영업지원 스크립트", "업무지원 AI Assistant", "API Hub"].map((service, idx) => (
-                <span key={idx} style={{ display: "inline-block", padding: "6px 12px", background: `${C.ablRed}15`, color: C.ablRed, borderRadius: "6px", fontSize: "12px", fontWeight: 600 }}>
+                <span key={idx} style={{ display: "inline-block", padding: "6px 12px", background: `${C.abl}15`, color: C.abl, borderRadius: "6px", fontSize: "12px", fontWeight: 600 }}>
                   {service}
                 </span>
               ))}
@@ -207,9 +207,9 @@ const PortalHome = ({ onNavigate }) => {
 
           <button
             onClick={() => onNavigate("abl")}
-            style={{ width: "100%", padding: "14px", background: C.ablRed, color: "white", border: "none", borderRadius: "8px", fontSize: "16px", fontWeight: 600, cursor: "pointer", transition: "background 0.3s ease-out" }}
+            style={{ width: "100%", padding: "14px", background: C.abl, color: "white", border: "none", borderRadius: "8px", fontSize: "16px", fontWeight: 600, cursor: "pointer", transition: "background 0.3s ease-out" }}
             onMouseEnter={(e) => { e.currentTarget.style.background = "#A90019"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = C.ablRed; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = C.abl; }}
           >
             시작하기 →
           </button>

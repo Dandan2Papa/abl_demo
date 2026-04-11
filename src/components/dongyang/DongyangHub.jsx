@@ -207,7 +207,7 @@ const DongyangHub = ({ settings, onBack }) => {
                     style={{
                       marginBottom: 12,
                       padding: "12px",
-                      backgroundColor: msg.role === "user" ? "#E8F0FE" : "#F5F5F5",
+                      backgroundColor: msg.role === "user" ? "#EEF4FF" : "#FAFBFC",
                       borderRadius: "6px",
                       fontSize: "13px",
                       color: "#333",
@@ -315,7 +315,7 @@ const DongyangHub = ({ settings, onBack }) => {
               style={{
                 padding: "8px",
                 marginBottom: 8,
-                backgroundColor: "#F5F5F5",
+                backgroundColor: "#FAFBFC",
                 borderRadius: "4px",
                 cursor: "pointer",
                 fontSize: "11px",
@@ -409,7 +409,7 @@ const DongyangHub = ({ settings, onBack }) => {
                 style={{
                   marginBottom: 12,
                   padding: "12px",
-                  backgroundColor: msg.role === "user" ? "#E8F0FE" : "#F5F5F5",
+                  backgroundColor: msg.role === "user" ? "#EEF4FF" : "#FAFBFC",
                   borderRadius: "6px",
                   fontSize: "13px",
                 }}
@@ -481,10 +481,10 @@ const DongyangHub = ({ settings, onBack }) => {
 
         <div style={{ width: 150, borderLeft: "1px solid #E0E0E0", padding: "12px", fontSize: "11px" }}>
           <div style={{ fontWeight: 600, marginBottom: 8, color: "#333" }}>관련 약관</div>
-          <div style={{ padding: "8px", backgroundColor: "#F5F5F5", borderRadius: "4px", marginBottom: 8 }}>
+          <div style={{ padding: "8px", backgroundColor: "#FAFBFC", borderRadius: "4px", marginBottom: 8 }}>
             <div style={{ fontSize: "10px", color: "#666" }}>제3조 보험료</div>
           </div>
-          <div style={{ padding: "8px", backgroundColor: "#F5F5F5", borderRadius: "4px" }}>
+          <div style={{ padding: "8px", backgroundColor: "#FAFBFC", borderRadius: "4px" }}>
             <div style={{ fontSize: "10px", color: "#666" }}>제5조 보장 범위</div>
           </div>
         </div>
@@ -589,7 +589,7 @@ const DongyangHub = ({ settings, onBack }) => {
                 style={{
                   marginBottom: 12,
                   padding: "12px",
-                  backgroundColor: msg.role === "user" ? "#E8F0FE" : "#F5F5F5",
+                  backgroundColor: msg.role === "user" ? "#EEF4FF" : "#FAFBFC",
                   borderRadius: "6px",
                   fontSize: "13px",
                 }}
@@ -766,7 +766,7 @@ const DongyangHub = ({ settings, onBack }) => {
                 style={{
                   marginBottom: 12,
                   padding: "12px",
-                  backgroundColor: msg.role === "user" ? "#E8F0FE" : "#F5F5F5",
+                  backgroundColor: msg.role === "user" ? "#EEF4FF" : "#FAFBFC",
                   borderRadius: "6px",
                   fontSize: "13px",
                 }}
@@ -811,7 +811,7 @@ const DongyangHub = ({ settings, onBack }) => {
 
         <div style={{ width: 160, borderLeft: "1px solid #E0E0E0", padding: "12px", fontSize: "11px" }}>
           <div style={{ fontWeight: 600, marginBottom: 8 }}>인수기준</div>
-          <div style={{ padding: "8px", backgroundColor: "#F5F5F5", borderRadius: "4px", color: "#666" }}>
+          <div style={{ padding: "8px", backgroundColor: "#FAFBFC", borderRadius: "4px", color: "#666" }}>
             <div style={{ fontSize: "10px", marginBottom: 6 }}>일반암: 5000만원</div>
             <div style={{ fontSize: "10px", marginBottom: 6 }}>신장질환: 3000만원</div>
             <div style={{ fontSize: "10px" }}>당뇨: 2000만원</div>
@@ -890,7 +890,7 @@ const DongyangHub = ({ settings, onBack }) => {
                 style={{
                   marginBottom: 12,
                   padding: "12px",
-                  backgroundColor: msg.role === "user" ? "#E8F0FE" : "#F5F5F5",
+                  backgroundColor: msg.role === "user" ? "#EEF4FF" : "#FAFBFC",
                   borderRadius: "6px",
                   fontSize: "13px",
                 }}
@@ -944,7 +944,7 @@ const DongyangHub = ({ settings, onBack }) => {
           <div style={{ fontSize: "14px", fontWeight: 600, color: "#0066B3", marginBottom: 12 }}>보장분석 스크립트</div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
-            <div style={{ padding: 12, backgroundColor: "#F5F5F5", borderRadius: "6px" }}>
+            <div style={{ padding: 12, backgroundColor: "#FAFBFC", borderRadius: "6px" }}>
               <div style={{ fontSize: "12px", fontWeight: 600, marginBottom: 8, color: "#333" }}>고객 정보</div>
               <input
                 type="text"
@@ -1014,7 +1014,7 @@ const DongyangHub = ({ settings, onBack }) => {
               </button>
             </div>
 
-            <div style={{ padding: 12, backgroundColor: "#F0F8FF", borderRadius: "6px" }}>
+            <div style={{ padding: 12, backgroundColor: "#EEF4FF", borderRadius: "6px" }}>
               <div style={{ fontSize: "12px", fontWeight: 600, marginBottom: 8, color: "#0066B3" }}>AI 생성 스크립트</div>
               <div style={{ fontSize: "11px", color: "#666", lineHeight: "1.6" }}>
                 <div style={{ fontWeight: 600, marginBottom: 4 }}>[도입인사]</div>
@@ -1035,7 +1035,7 @@ const DongyangHub = ({ settings, onBack }) => {
             </div>
           </div>
 
-          <div style={{ padding: 12, backgroundColor: "#F5F5F5", borderRadius: "6px", marginTop: 12 }}>
+          <div style={{ padding: 12, backgroundColor: "#FAFBFC", borderRadius: "6px", marginTop: 12 }}>
             <div style={{ fontSize: "12px", fontWeight: 600, marginBottom: 8, color: "#333" }}>품질 점수</div>
             <div style={{ display: "flex", gap: 20 }}>
               <div>
@@ -1054,7 +1054,7 @@ const DongyangHub = ({ settings, onBack }) => {
   };
 
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column", backgroundColor: "#F3F5F8" }}>
+    <div style={{ height: "100vh", display: "flex", flexDirection: "column", backgroundColor: "#FFFFFF" }}>
       {/* Header */}
       <div
         style={{
@@ -1113,7 +1113,7 @@ const DongyangHub = ({ settings, onBack }) => {
       </div>
 
       {/* Tab Content */}
-      <div style={{ flex: 1, backgroundColor: "#F3F5F8", overflowY: "auto" }}>
+      <div style={{ flex: 1, backgroundColor: "#FFFFFF", overflowY: "auto" }}>
         {activeTab === "playground" && <PlaygroundTab />}
         {activeTab === "yakgwan" && <YakgwanTab />}
         {activeTab === "claim" && <ClaimTab />}
